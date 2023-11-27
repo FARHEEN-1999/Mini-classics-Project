@@ -7,6 +7,7 @@ This exploratory analysis will cover the following deliverables:
 *   Description of data sources
 *   data exploration + analysis
 * Suggestions for inventory reduction supported by SQL queries
-## A - Project description
+# A - Project description
+## A.a The company & Stake holder, Situation & business problem
 
 
