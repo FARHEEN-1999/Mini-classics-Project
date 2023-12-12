@@ -8,45 +8,55 @@ This exploratory analysis will cover the following deliverables:
 *   data exploration + analysis
 * Suggestions for inventory reduction supported by SQL queries
 # A - Project description
-## A.a - The company & Stake holder, Situation & business problem
-Mint Classics Company, a retailer of classic model cars and other vehicles, is looking at closing one of their storage facilities.
+To analyze data in a relational database using SQL queries with the goal of supporting inventory-related business decisions that lead to the closure of a storage facility.
 
-To support a data-based business decision, they are looking for suggestions and recommendations for reorganizing or reducing inventory, while still maintaining timely service to their customers. For example, they would like to be able to ship a product to a customer within 24 hours of the order being placed.
+# Questions
+Where are items stored and if they were rearranged, could a warehouse be eliminated?
+How are inventory numbers related to sales figures? Do the inventory counts seem appropriate for each item?
+Are we storing items that are not moving? Are any items candidates for being dropped from the product line?
+If we decrease the stocks by 5% for each of the products does it affect the sales?
+Is price a major factor in popularity of the products?
+What is profit percentage earned in the products that were sold the most?
+What is profit percentage earned in the products that were sold the least?
+# Method
+We used SQL queries on MySQL Workbench to perform exploratory data analysis. To begin with, we with imported the database using the SQL script linked here- mintclassics DB and studied the schema using the EER (Extended Entity-Relationship diagram). Further, we identified the tables and fields that could provide relavent informations to the questions asked above and support our insights. We begin this project with analyzing historical sales data, identifying trends, and assessing stock levels. By reallocating orders, optimizing inventory, and considering price adjustments, the aim was to enhance operational efficiency, reduce costs, and maximize profitability while ensuring product availability and customer satisfaction. This approach aligns with modern supply chain principles and business management.
 
-As a data analyst, you have been asked to use MySQL Workbench to familiarize yourself with the general business by examining the current data. You will be provided with a data model and sample data tables to review. You will then need to isolate and identify those parts of the data that could be useful in deciding how to reduce inventory.
+# Insights and Suggestions
+## General Insights-
 
-The overall objective is to give recommendations for reducing inventory with the goal of closing one of the storage facilities.
+In the initial year of 2003, a total of 36,439 sales transactions were recorded. This figure experienced a decline, reaching 19,590 sales in 2005.
+Yearly Sales
 
-## A.b - The business Task:
-* Explore products currently in inventory.
-* Determine important factors that may influence inventory reorganization/reduction.
-* Provide analytic insights and data-driven recommendations.
+The preponderance of clients hailed from the United States, and it is noteworthy that this nation yielded the highest revenue, followed by Spain and France.
+# Revenue
 
-## A.c - Guiding questions:
-* Where are items stored and if they were rearranged, could a warehouse be eliminated?
-* How are inventory numbers related to sales figures? Do the inventory counts seem appropriate for each item?
-* Are we storing items that are not moving? Are any items candidates for being dropped from the product line?
+Interestingly, six countries—Poland, Portugal, Netherlands, South Africa, Russia, and Israel—did not contribute to revenue generation, while Hong Kong and Ireland generated the least revenue.
+Least revenue
 
-## A.d - Key solution metrics
-In order to be able to answer above business question(s), the following key metrics are to be calculated.
-* Most and least popular types of models
-* Summary of inventory at each warehouse location
-* Correlation between sales and amount of inventory in stock
+During this period, six clients canceled their orders, with one prominent client opting for a more favorable offer from a competitor.
+customer status cancelled orders product codes
 
-# B - Description of data sources
-In this analysis, I am using the provided "mintclassicsDB" from the Coursera project "Analyze Data in a Model Car Database with MySQL Workbench".
-This is a fictional database for learning purposes.
+To maintain competitiveness, a 5% price reduction is proposed for select products while ensuring continued profitability.
+suggested pricing
 
-Previewing the included tables:
-* warehouses - lists the 4 warehouses
-* products - contains information about different model products
-* productlines - descriptions of different product lines
-* orderdetails - order id's, products, quantity, and price
-* orders - also contains order id's, relevant dates, status, and customer id's
-* customers - customer id's with contact information
-* payments - customer id, check id, payment date, amount
-* employees - list of employee information
-* offices - list of 7 offices
+# Problem-specific Insights
+
+Significantly, the profit percentage exhibited minimal variance between the leastand most popular products. Price of the product also did not seem to influence the popularity of the product.
+least ordered products' profit percentage most ordered products' profit percentage
+
+We also observed that a product named 1985 Toyota Supra (product code- S18_3233) had not been sold at all, On further investigating the product we observed that this product had not been priced yet. So the reason why it didn't sell could be that it's newly launched product or maybe there has been an error with the data entry.
+
+Inventory primarily resides in warehouses A, B, and C, with warehouses A and B serving as primary shipping hubs, followed by warehouses C and D.
+
+details on warehouse warehouse stock stock shipped from each warehouse
+
+To address the significant disparity between available stock and ordered quantities over the past three years, a reduction in stock levels (20%-30%) is suggested for the 68 listed products that may potentially become obsolete with time. However, precise numbers should be discussed with the supplier.
+top 10 overstocked products
+
+Approximately 24 products are maintaining optimal stock levels for received orders, while five products require restocking in the near term, and 11 products demand immediate replenishment to meet market demands. As the demand for stocks of each products is different from the other, it won't be feasible to reduce the stocks for each and every product by 5%.
+optimum stocks-total 24 restock urgent restock
+
+Taking into account that we have to reduce a lot of extra stock and close down one storage place, we can move the orders from warehouse D to warehouse C. This will help us use our space better and close the storage place smoothly.
   
 The relevant tables for this project will be:
 * warehouses
